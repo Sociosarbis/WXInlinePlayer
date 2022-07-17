@@ -58,6 +58,16 @@ LICENSED WORK OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
 
 using namespace std;
 
+struct DecodeOptions {
+  bool skip_body_decoding;
+
+  DecodeOptions() {};
+
+  DecodeOptions(bool _skip_body_decoding) {
+    skip_body_decoding = _skip_body_decoding;
+  }
+};
+
 class Decoder {
 public:
     Decoder() : _state(0), _buffer(make_shared<Buffer>()), _header(make_shared<Header>()),
@@ -67,6 +77,7 @@ public:
       _factor = factor;
     }
 
+    void decode(shared_ptr<Buffer> &buffer, const DecodeOptions &options);
     void decode(shared_ptr<Buffer> &buffer);
 
 private:

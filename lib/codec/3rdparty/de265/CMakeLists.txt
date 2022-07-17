@@ -2,8 +2,8 @@ project (libde265)
 cmake_minimum_required (VERSION 2.8.8)
 
 # The version number.
-set (NUMERIC_VERSION 0x01000000)
-set (PACKAGE_VERSION 1.0.0)
+set (NUMERIC_VERSION 0x01000500)
+set (PACKAGE_VERSION 1.0.5)
 
 include (${CMAKE_ROOT}/Modules/CheckCCompilerFlag.cmake)
 include (${CMAKE_ROOT}/Modules/CheckFunctionExists.cmake)

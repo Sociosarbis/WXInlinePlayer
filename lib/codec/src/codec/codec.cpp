@@ -54,6 +54,12 @@ void Codec::decode(uint8_t *bytes, uint32_t byteLen) {
   _decoder->decode(buffer);
 }
 
+void Codec::skipBodyDecode(uint8_t *bytes, uint32_t byteLen) {
+  shared_ptr<Buffer> buffer = make_shared<Buffer>(bytes, byteLen);
+  const auto options = DecodeOptions(true);
+  _decoder->decode(buffer, options);
+}
+
 uint32_t Codec::try2seek(uint8_t *bytes, uint32_t byteLen) {
   shared_ptr<Buffer> buffer = make_shared<Buffer>(bytes, byteLen);
   return 0;

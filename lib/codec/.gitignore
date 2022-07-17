@@ -3,3 +3,8 @@ build
 cmake-build-debug
 .idea
 lib
+Makefile
+CMakeFiles
+*.dir
+*.cmake
+CMakeCache.txt

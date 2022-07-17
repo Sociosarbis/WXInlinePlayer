@@ -82,6 +82,12 @@ void codecDecode(uint8_t *bytes, uint32_t length) {
   }
 }
 
+void codecSkipBodyDecode(uint8_t *bytes, uint32_t length) {
+  if (codec != nullptr) {
+    codec->skipBodyDecode(bytes, length);
+  }
+}
+
 int codecTry2Seek(char *buffer, uint32_t length) {
   if (codec != nullptr) {
     return codec->try2seek((uint8_t *) buffer, length);

@@ -49,7 +49,7 @@ LICENSED WORK OR THE USE OR OTHER DEALINGS IN THE LICENSED WORK.
 
 #include "decoder.h"
 
-void Decoder::decode(shared_ptr<Buffer> &buffer) {
+void Decoder::decode(shared_ptr<Buffer> &buffer, const DecodeOptions &options) {
   _buffer = make_shared<Buffer>(*_buffer + *buffer);
   for (;;) {
     switch (_state) {
@@ -81,7 +81,9 @@ void Decoder::decode(shared_ptr<Buffer> &buffer) {
         }
 
         if (_factor != nullptr) {
-          _factor->recvBodyValue(value);
+          if (!options.skip_body_decoding) {
+            _factor->recvBodyValue(value);
+          }
         }
         _buffer = value->buffer;
       }
@@ -89,4 +91,9 @@ void Decoder::decode(shared_ptr<Buffer> &buffer) {
         return;
     }
   }
+}
+
+void Decoder::decode(shared_ptr<Buffer> &buffer) {
+  const DecodeOptions emptyOptions;
+  decode(buffer, emptyOptions);
 }

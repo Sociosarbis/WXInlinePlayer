@@ -102,6 +102,8 @@ public:
 
   void decode(uint8_t *bytes, uint32_t byteLen);
 
+  void skipBodyDecode(uint8_t *bytes, uint32_t byteLen);
+
   void setBridgeName(string bridge) {
     bridgeName = bridge;
   }

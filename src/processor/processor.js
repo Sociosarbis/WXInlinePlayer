@@ -390,7 +390,7 @@ class Processor extends EventEmitter {
         }
 
         this.frames.push({
-          data: Buffer.from(new Uint8Array(buffer)),
+          data: buffer.constructor === ArrayBuffer ? Buffer.from(new Uint8Array(buffer)) : buffer,
           timestamp: timestamp - this.baseTime,
           width,
           height,

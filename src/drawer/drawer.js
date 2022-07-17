@@ -325,4 +325,25 @@ class Drawer {
   }
 }
 
+export class BitmapDrawer {
+  constructor($canvas) {
+    this.$canvas = $canvas;
+    this.context = $canvas.getContext('bitmaprenderer');
+  }
+
+  static isSupport() {
+    return 'OffscreenCanvas' in window;
+  }
+
+  drawNextOutputPicture(_width, _height, data) {
+    this.context.transferFromImageBitmap(data);
+  }
+
+  destroy() {
+    this.$canvas = null;
+    this.context = null;
+  }
+
+}
+
 export default Drawer;
